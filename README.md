@@ -11,4 +11,4 @@ cd src
       node index.js
 
   ### Using nodemon
-      npm nodemon index.js
+      npx nodemon index.js
