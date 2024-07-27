@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contacts</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        html,body{
+            width: 100%;
+            min-height: 100%;
+            background-color: rgb(33, 33, 33);
+        }
+        .container{
+            width: 100%;
+            height: 100%;
+        }
+
+        .link{
+            width: 100%;
+            padding: 30px;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+            background-color: #023E8A;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .form-holder{
+            width: 100%;
+            /* height: 100%; */
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        form{
+            margin-top: 20px;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+            border: 1px solid white;
+            border-radius: 10px;
+        }
+        h1{
+            color: white;
+            text-align: center;
+            font-size: 40px;
+        }
+        input,select{
+            background-color: transparent;
+            color: white;
+            padding: 10px;
+            border: 1px solid white;
+            border-radius: 8px;
+        }
+
+        option{
+            background-color: transparent;
+            color: black;
+        }
+        input[type="submit"]{
+            background-color: #023E8A;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="link">
+            <a href="/api/v1/contact">go to home</a>
+        </div>
+        <div class="form-holder">
+            <form action="/api/v1/contact/<%= fetchedContact._id %>" method="post" enctype="multipart/form-data">
+                <h1>Add Contact</h1>
+                <input type="text" placeholder="enter contact name" value="<%=fetchedContact.name %>" name="name">
+                <input type="text" placeholder="enter contact number" value="<%=fetchedContact.number %>" name="number">
+                <input type="file" name="image">
+                <input type="text" placeholder="enter contact email" value="<%=fetchedContact.email %>" name="email">
+                <select id="" value="<%=fetchedContact.category %>" name="category">
+                  <option value="friends">friends</option>
+                  <option value="family">family</option>
+                  <option value="office">office</option>
+                </select>
+                <input type="text" placeholder="enter contact address" value="<%=fetchedContact.address %>" name="address">
+                <input type="submit" value="edit contact">
+              </form>
+              
+        </div>
+    </div>
+</body>
+</html>

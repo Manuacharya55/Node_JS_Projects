@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Contacts</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      html,
+      body,
+      .container,
+      .card-holder {
+        width: 100%;
+        height: 100%;
+      }
+      .container {
+        width: 100%;
+        min-height: 100%;
+        background-color: rgb(33, 33, 33);
+      }
+
+      .links {
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .links a {
+        text-decoration: none;
+        color: white;
+        background-color: #023e8a;
+        padding: 10px;
+        border-radius: 8px;
+      }
+
+      .filter a {
+        margin: 0px 10px;
+      }
+      .card-holder {
+        width: 100%;
+        padding: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+      .ph-card {
+        width: 240px;
+        height: fit-content;
+        background-color: rgb(68, 68, 68);
+        border: 1px solid white;
+        color: white;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+
+        border-radius: 10px;
+      }
+      .ph-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 10px;
+      }
+
+      .ph-card h1 {
+        font-size: 29px;
+        text-transform: capitalize;
+      }
+      .ph-card p {
+        font-size: 15px;
+        margin-top: 8px;
+      }
+
+      .mp-links {
+        padding-top: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .mp-links a {
+        padding: 10px;
+        border-radius: 8px;
+        text-decoration: none;
+        color: white;
+      }
+
+      .edit {
+        background-color: orange;
+      }
+
+      .del {
+        background-color: red;
+      }
+      .message {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="links">
+        <a href="/api/v1/addcontact">Add new contact</a>
+
+        <div class="filter">
+          <a href="/api/v1/contact?category=all">all</a>
+          <a href="/api/v1/contact?category=friends">friends</a>
+          <a href="/api/v1/contact?category=family">family</a>
+          <a href="/api/v1/contact?category=office">office</a>
+        </div>
+      </div>
+      <div class="card-holder">
+        <% if(allContact.length != 0){ %> <% allContact.forEach((contact)=>{%>
+
+        <div class="ph-card">
+          <img src="../images/822b12a9d30a25d649d088a3.jpg" alt="" />
+          <h1><%= contact.name %></h1>
+          <p><%= contact.email %></p>
+          <p><%= contact.number %></p>
+          <p><%= contact.address %></p>
+
+          <div class="mp-links">
+            <a href="/api/v1/contact/<%= contact._id %>" class="edit">edit</a>
+            <a href="/api/v1/deletecontact/<%= contact._id %>" class="del"
+              >delete</a
+            >
+          </div>
+        </div>
+        <% }) } else {%>
+        <h1 class="message">No Contacts Yet</h1>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
