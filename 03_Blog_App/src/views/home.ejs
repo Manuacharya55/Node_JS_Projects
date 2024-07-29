@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogify</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      html,
+      body,
+      .container {
+        width: 100%;
+        min-height: 100%;
+        background-color: lightgrey;
+        /*  background-color: lightgrey; */
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+      }
+      nav {
+        width: 100%;
+        padding: 20px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: white;
+
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #ffa500;
+      }
+      nav h1 {
+        font-size: 34px;
+      }
+      nav ul {
+        list-style-type: none;
+        display: flex;
+        gap: 30px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: black;
+      }
+
+      nav ul li a:hover {
+        transition: 0.5s ease all;
+        color: #ffa500;
+      }
+
+      .text-holder {
+        background-color: white;
+        text-align: center;
+        padding: 50px;
+      }
+      .text {
+        font-size: 20vh;
+        font-weight: 600;
+      }
+
+      .image-holder {
+        height: 350px;
+        overflow: hidden;
+      }
+
+      .image-holder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .all-blog-holder {
+        width: 100%;
+        padding: 20px;
+
+        display: flex;
+        justify-content: flex-start;
+        gap: 30px;
+      }
+      .card {
+        max-width: 300px;
+        width: 100%;
+        background-color: white;
+        border-radius: 10px;
+        aspect-ratio: 2 / 2;
+        overflow: hidden;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.01);
+      }
+      .card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+      }
+
+      h3,
+      h5 {
+        margin-top: 10px;
+        margin-left: 8px;
+      }
+      h5 {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav>
+          <a href="/blogify/home"><h1>Blogify</h1></a>
+          <ul>
+            <li><a href="/blogify/home">Home</a></li>
+            <li><a href="/blogify/addblog">Add Blog</a></li>
+            <li><a href="/blogify/profile">Profile</a></li>
+          </ul>
+
+          <a href="/blogify/logout">Logout</a>
+        </nav>
+
+        <div class="text-holder">
+          <h1 class="text">Digital journal</h1>
+        </div>
+        <div class="image-holder">
+          <img
+            src="https://images.unsplash.com/photo-1640441710600-c2464f89f9a0?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt=""
+          />
+        </div>
+      </header>
+
+      <div class="all-blog-holder">
+        <% if(allBlog.length > 0) {%> <% allBlog.forEach((blog)=>{ %>
+        <a href="/blogify/read/<%=blog._id %>">
+          <div class="card">
+            <img
+              src="https://images.pexels.com/photos/1366957/pexels-photo-1366957.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt=""
+            />
+
+            <h3><%= blog.title %></h3>
+            <h5>@<%=blog.creator.username %></h5>
+          </div>
+        </a>
+        <% }) %> <% }%>
+      </div>
+    </div>
+  </body>
+</html>
